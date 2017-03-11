@@ -9,12 +9,8 @@ var Car = require('./models/car');
 // sets port 8080 to default or unless otherwise specified in the environment
 app.engine('ejs', engine);
 app.set('port', process.env.PORT || 8080);
-app.get('/', '/test');
-
 app.get('/', function (req, res) {
-    res.send('Hello World!');
-    res.end('Hello World!');
-    console.log('Example app listening on port 3000!');
+    res.render('test', {title:"he",length:3});
 });
 // Only works on 3000 regardless of what I set environment port to or how I set
 // [value] in app.set('port', [value]).

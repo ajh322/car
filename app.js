@@ -10,6 +10,7 @@ var Car = require('./models/car');
 app.set('port', process.env.PORT || 8080);
 app.get('/', function (req, res) {
     conn.collection('car').insert({name: 2, user_id: "s"});
+    res.end();
 });
 app.listen(app.get('port'));
 

@@ -19,10 +19,15 @@ app.get('/', function (req, res) {
     conn.collection('car').insert({name: 2, user_id: "s"});
     res.end();
 });
+app.post('/insert', function (req, res) {
+    console.log("inserted");
+    conn.collection('car').insert({strTitle:req.body.title,strCar:req.body.car,strCompany:req.body.company,strPrice:req.body.price})
+    res.end("good");
+})
 app.get('/test', function (req, res) {
     Car.find({}).exec(function (err, doc_l) {
-console.log(doc_l);
-        res.render('test', {data:doc_l,length:doc_l.length});
+        console.log(doc_l);
+        res.render('test', {data: doc_l, length: doc_l.length});
         //res.end(JSON.stringify(doc_l));
     })
 });

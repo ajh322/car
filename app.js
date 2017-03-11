@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
     res.end();
 });
 app.get('/test', function (req, res) {
-    Car.findOne({}).exec(function (err, doc_l) {
+    Car.find({}).exec(function (err, doc_l) {
         console.log(doc_l);
         res.render('test', {data:doc_l,length:doc_l.length});
         res.end(JSON.stringify(doc_l));

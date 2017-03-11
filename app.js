@@ -20,9 +20,11 @@ app.get('/', function (req, res) {
     res.end();
 });
 app.get('/test', function (req, res) {
-    var data=Car.find({});
-    console.log(data.strTitle);
-    res.render('test', {data:data,length:data.length});
+    Car.findOne({}).exec(function (err, doc_l) {
+        console.log(doc_l);
+        res.render('test', {data:data,length:data.length});
+        res.end(JSON.stringify(doc_l));
+    })
 });
 app.listen(app.get('port'));
 

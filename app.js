@@ -10,7 +10,6 @@ app.set('port', process.env.PORT || 8080);
 
 app.get('/', function(req, res){
     console.log(Car.find({}));
-    res.render();
 
     res.sendFile(path.join(__dirname + '/test.html'));
 });

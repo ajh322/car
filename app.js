@@ -21,6 +21,7 @@ app.get('/', function (req, res) {
 });
 app.get('/test', function (req, res) {
     var data=Car.find({});
+    console.log(data);
     res.render('test', {data:data,length:data.length});
 });
 app.listen(app.get('port'));

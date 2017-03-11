@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 app.post('/insert', function (req, res) {
     console.log("inserted");
     conn.collection('car').insert({strTitle:req.body.title,strCar:req.body.car,strCompany:req.body.company,strPrice:req.body.price})
-    res.end("good");
+    res.redirect("/test");
 })
 app.get('/test', function (req, res) {
     Car.find({}).exec(function (err, doc_l) {

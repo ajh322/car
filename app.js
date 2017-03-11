@@ -20,7 +20,8 @@ app.get('/', function (req, res) {
     res.end();
 });
 app.get('/test', function (req, res) {
-    res.render('test', {title:"title"});
+    var data=Car.find({});
+    res.render('test', {data:data,length:data.length});
 });
 app.listen(app.get('port'));
 

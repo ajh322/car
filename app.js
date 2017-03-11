@@ -31,5 +31,9 @@ app.get('/test', function (req, res) {
         //res.end(JSON.stringify(doc_l));
     })
 });
+app.post('/kakao_login', function (req, res) {
+    res.sendfile("kakao_login.html");
+})
+
 app.listen(app.get('port'));
 

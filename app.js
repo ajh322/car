@@ -9,12 +9,7 @@ var Car = require('./models/car');
 // sets port 8080 to default or unless otherwise specified in the environment
 app.engine('ejs', engine);
 app.set('port', process.env.PORT || 8080);
-app.get('/', '/test')
-app.get('/', function(req, res){
-    console.log(Car.find({}));
-
-    res.sendFile(path.join(__dirname + ));
-});
+app.get('/', '/test');
 
 app.get('/', function (req, res) {
     res.send('Hello World!');

@@ -21,9 +21,9 @@ app.get('/', function (req, res) {
 });
 app.get('/test', function (req, res) {
     Car.find({}).exec(function (err, doc_l) {
-        console.log(doc_l);
-//        res.render('test', {data:doc_l,length:doc_l.length});
-        res.end(JSON.stringify(doc_l));
+console.log(doc_l);
+        res.render('test', {data:doc_l,length:doc_l.length});
+        //res.end(JSON.stringify(doc_l));
     })
 });
 app.listen(app.get('port'));

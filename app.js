@@ -32,7 +32,7 @@ app.get('/test', function (req, res) {
     })
 });
 app.get('/kakao_login', function (req, res) {
-    res.sendFile("/kakao_login.html");
+    res.sendFile("./kakao_login.html");
 })
 
 app.listen(app.get('port'));

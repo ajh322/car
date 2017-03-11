@@ -11,7 +11,7 @@ app.set('port', process.env.PORT || 8080);
 app.get('/', function(req, res){
     console.log(Car.find({}));
 
-    res.sendFile(path.join(__dirname + '/test.html'));
+    res.sendFile(path.join(__dirname + '/test.ejs'));
 });
 
 app.get('/', function (req, res) {

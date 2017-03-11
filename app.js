@@ -1,12 +1,17 @@
 var express = require("express");
+var path = require("path");
 var app = express();
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
-var car = require('./models/car');
+var Car = require('./models/car');
 // sets port 8080 to default or unless otherwise specified in the environment
 app.set('port', process.env.PORT || 8080);
 
 app.get('/', function(req, res){
+    console.log(Car.find({}));
+    res.render();
+
     res.sendFile(path.join(__dirname + '/test.html'));
 });
 

@@ -7,5 +7,5 @@ var userSchema = new mongoose.Schema({
 
     part_name: {type: String, required: true, index: {required:true, unique: true}}
 });
-var car = conn.model('car', userSchema, "car");
-module.exports = car;
+var part_category = conn.model('part_category', userSchema, "part_category");
+module.exports = part_category;

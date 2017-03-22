@@ -39,8 +39,11 @@ app.get('/', function (req, res) {
 });
 app.post('/insert_part_category', function (req, res) {
     console.log("inserted");
-    conn.collection('part_category').insert({part_name:req.body.part_name})
-    res.redirect("/part_category");
+    if(req.body.part_name!="")
+    {
+        conn.collection('part_category').insert({part_name:req.body.part_name})
+        res.redirect("/part_category");
+    }
 })
 app.get('/part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc_l) {

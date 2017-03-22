@@ -44,6 +44,10 @@ app.post('/insert_part_category', function (req, res) {
         conn.collection('part_category').insert({part_name:req.body.part_name})
         res.redirect("/part_category");
     }
+    else
+    {
+        res.redirect("잘못된 입력");
+    }
 })
 app.get('/part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc_l) {

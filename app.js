@@ -46,7 +46,7 @@ app.post('/insert_part_category', function (req, res) {
     }
     else
     {
-        res.redirect("잘못된 입력");
+        res.end("잘못된 입력");
     }
 })
 app.get('/part_category', function (req, res) {

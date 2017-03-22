@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 mongoose.Promise = global.Promise;
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
 var Car = require('./models/car');
+var part_category = require('./models/part_category');
 app.set('port', process.env.PORT || 8080);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
@@ -19,13 +20,13 @@ app.get('/', function (req, res) {
     conn.collection('car').insert({name: 2, user_id: "s"});
     res.end();
 });
-app.post('/insert', function (req, res) {
+app.post('/insert_part_category', function (req, res) {
     console.log("inserted");
-    conn.collection('car').insert({strTitle:req.body.title,strCar:req.body.car,strCompany:req.body.company,strPrice:req.body.price})
+    conn.collection('part').insert({strTitle:req.body.title,strCar:req.body.car,strCompany:req.body.company,strPrice:req.body.price})
     res.redirect("/test");
 })
-app.get('/test', function (req, res) {
-    Car.find({}).exec(function (err, doc_l) {
+app.get('/part_category', function (req, res) {
+    part_category.find({}).exec(function (err, doc_l) {
         console.log(doc_l);
         res.render('test', {data: doc_l, length: doc_l.length});
         //res.end(JSON.stringify(doc_l));

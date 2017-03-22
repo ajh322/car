@@ -5,6 +5,7 @@ var engine = require('ejs-locals');
 var mongoose = require('mongoose');
 var fs = require('fs');
 var bodyParser = require('body-parser');
+var sphp = require('sphp');
 
 mongoose.Promise = global.Promise;
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
@@ -16,7 +17,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(express.static('public'));
+app.use(sphp.express('public/'));
+app.use(express.static('public/'));
 app.get('/', function (req, res) {
     conn.collection('car').insert({name: 2, user_id: "s"});
     res.end();

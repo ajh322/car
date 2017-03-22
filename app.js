@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(express.static('public'));
 app.get('/', function (req, res) {
     conn.collection('car').insert({name: 2, user_id: "s"});
     res.end();
@@ -23,6 +24,9 @@ app.get('/', function (req, res) {
 app.post('/insert_part_category', function (req, res) {
     console.log("inserted");
     conn.collection('part_category').insert({part_name:req.body.title})
+    res.redirect("/part_category");
+})
+app.post('/github', function (req, res) {
     res.redirect("/part_category");
 })
 app.get('/part_category', function (req, res) {

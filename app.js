@@ -52,13 +52,13 @@ app.post('/insert_part_category', function (req, res) {
 app.get('/part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc_l) {
         console.log(doc_l);
-        res.render('test', {data: doc_l, length: doc_l.length});
+        res.render('add_part_category', {data: doc_l, length: doc_l.length});
         //res.end(JSON.stringify(doc_l));
     })
 });
-app.get('/getPartCategory', function (req, res) {
+app.get('/part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc) {
-        res.end(JSON.stringify(doc));
+        res.render('part_category', {data: doc_l, length: doc_l.length});
     })
 });
 

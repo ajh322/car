@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
+//자동 업데이트 기능
 app.post('/deploy/', function (req, res) {
     var spawn = require('child_process').spawn,
         deploy = spawn('sh', [ './deploy.sh' ]);
@@ -32,6 +32,7 @@ app.post('/deploy/', function (req, res) {
     res.json(200, {message: 'Github Hook received!'})
 });
 
+//테스트용
 app.get('/', function (req, res) {
     conn.collection('car').insert({name: 2, user_id: "s"});
     res.end();

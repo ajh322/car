@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
 var userSchema = new mongoose.Schema({
 
-    part_name: {type: String, default: ""}
+    part_name: {type: String, required: true, index: {unique: true}}
 });
 var car = conn.model('car', userSchema, "car");
 module.exports = car;

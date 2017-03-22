@@ -18,6 +18,19 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.post('/deploy/', function (req, res) {
+    var spawn = require('child_process').spawn,
+        deploy = spawn('sh', [ './deploy.sh' ]);
+
+    deploy.stdout.on('data', function (data) {
+        console.log(''+data);
+    });
+
+    deploy.on('close', function (code) {
+        console.log('Child process exited with code ' + code);
+    });
+    res.json(200, {message: 'Github Hook received!'})
+});
 
 app.get('/', function (req, res) {
     conn.collection('car').insert({name: 2, user_id: "s"});

@@ -5,7 +5,7 @@ var engine = require('ejs-locals');
 var mongoose = require('mongoose');
 var fs = require('fs');
 var bodyParser = require('body-parser');
-var sphp = require('sphp');
+
 
 mongoose.Promise = global.Promise;
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
@@ -17,8 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(sphp.express('public/'));
-app.use(express.static('public/'));
+
 app.post('/deploy/', function (req, res) {
     var spawn = require('child_process').spawn,
         deploy = spawn('sh', [ './deploy.sh' ]);
@@ -32,6 +31,7 @@ app.post('/deploy/', function (req, res) {
     });
     res.json(200, {message: 'Github Hook received!'})
 });
+
 app.get('/', function (req, res) {
     conn.collection('car').insert({name: 2, user_id: "s"});
     res.end();
@@ -53,4 +53,6 @@ app.get('/kakao_login', function (req, res) {
 })
 
 app.listen(app.get('port'));
+
+
 

@@ -14,11 +14,24 @@ var part_category = require('./models/part_category');
 app.set('port', process.env.PORT || 8080);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({  
+app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(sphp.express('public/'));
 app.use(express.static('public/'));
+app.post('/deploy/', function (req, res) {
+    var spawn = require('child_process').spawn,
+        deploy = spawn('sh', [ './deploy.sh' ]);
+
+    deploy.stdout.on('data', function (data) {
+        console.log(''+data);
+    });
+
+    deploy.on('close', function (code) {
+        console.log('Child process exited with code ' + code);
+    });
+    res.json(200, {message: 'Github Hook received!'})
+});
 app.get('/', function (req, res) {
     conn.collection('car').insert({name: 2, user_id: "s"});
     res.end();

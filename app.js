@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(sphp.express('public/'));
-app.use(express.static('public/'));
+app.use(express.static('public/')); 
 app.get('/', function (req, res) {
     conn.collection('car').insert({name: 2, user_id: "s"});
     res.end();

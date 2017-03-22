@@ -22,8 +22,8 @@ app.get('/', function (req, res) {
 });
 app.post('/insert_part_category', function (req, res) {
     console.log("inserted");
-    conn.collection('part').insert({strTitle:req.body.title,strCar:req.body.car,strCompany:req.body.company,strPrice:req.body.price})
-    res.redirect("/test");
+    conn.collection('part_category').insert({part_name:req.body.title})
+    res.redirect("/part_category");
 })
 app.get('/part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc_l) {

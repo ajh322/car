@@ -41,12 +41,6 @@ app.post('/insert_part_category', function (req, res) {
     conn.collection('part_category').insert({part_name:req.body.title})
     res.redirect("/part_category");
 })
-app.post('/github', function (req, res) {
-    res.redirect("/github.php");
-})
-app.get('/github', function (req, res) {
-    res.redirect("/github.php");
-})
 app.get('/part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc_l) {
         console.log(doc_l);

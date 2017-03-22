@@ -9,12 +9,12 @@ var sphp = require('sphp');
 
 mongoose.Promise = global.Promise;
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
-var Car = require('./models/car'); 
+var Car = require('./models/car');
 var part_category = require('./models/part_category');
 app.set('port', process.env.PORT || 8080);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
+app.use(bodyParser.urlencoded({ 
     extended: true
 }));
 app.use(sphp.express('public/'));

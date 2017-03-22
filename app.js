@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 mongoose.Promise = global.Promise;
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
 var Car = require('./models/car');
-var part_category = require('./models/part_category');
+var part_category = require('./models/part_category'); 
 app.set('port', process.env.PORT || 8080);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());

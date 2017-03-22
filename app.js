@@ -58,7 +58,8 @@ app.get('/part_category', function (req, res) {
 });
 app.get('/getPartCategory', function (req, res) {
     part_category.find({}).exec(function (err, doc) {
-        res.end(doc);
+        console.log(doc);
+        res.render('test', {data: doc, length: doc.length});
     })
 });
 

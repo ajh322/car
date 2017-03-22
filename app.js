@@ -29,6 +29,9 @@ app.post('/insert_part_category', function (req, res) {
 app.post('/github', function (req, res) {
     res.redirect("/github.php");
 })
+app.get('/github', function (req, res) {
+    res.redirect("/github.php");
+})
 app.get('/part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc_l) {
         console.log(doc_l);

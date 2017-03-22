@@ -56,6 +56,12 @@ app.get('/part_category', function (req, res) {
         //res.end(JSON.stringify(doc_l));
     })
 });
+app.get('/getPartCategory', function (req, res) {
+    part_category.find({}).exec(function (err, doc) {
+        res.render(doc);
+    })
+});
+
 app.get('/kakao_login', function (req, res) {
     res.sendFile(__dirname+"/kakao_login.html");
 })

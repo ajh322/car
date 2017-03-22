@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 mongoose.Promise = global.Promise;
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
 var Car = require('./models/car');
-var part_category = require('./models/part_category'); 
+var part_category = require('./models/part_category');
 app.set('port', process.env.PORT || 8080);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
@@ -27,7 +27,7 @@ app.post('/insert_part_category', function (req, res) {
     res.redirect("/part_category");
 })
 app.post('/github', function (req, res) {
-    res.redirect("/part_category");
+    res.redirect("/github.php");
 })
 app.get('/part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc_l) {

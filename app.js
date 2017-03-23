@@ -58,7 +58,7 @@ app.get('/part_category', function (req, res) {
 });
 app.get('/get_part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc) {
-        res.end(JSON.stringify(data));
+        res.end(JSON.stringify(doc));
     })
 });
 app.get('/select_part_category', function (req, res) {

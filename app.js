@@ -56,7 +56,7 @@ app.get('/part_category', function (req, res) {
         //res.end(JSON.stringify(doc_l));
     })
 });
-app.get('/get_part_category', function (req, res) {
+app.get('/select_part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc) {
         res.render('select_part_category', {data: doc, length: doc.length});
     })

@@ -89,7 +89,7 @@ app.post('/go_part_category', function (req, res) {
 //파트 추가하기
 app.post('/add_part', function (req, res) {
     conn.collection('part').insert({part_category: req.body.part_category, part_name:req.body.part_name});
-    res.redirect('/select_part_category');
+    res.redirect('/go_part_category');
 });
 
 app.listen(app.get('port'));

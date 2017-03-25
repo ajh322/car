@@ -42,7 +42,7 @@ app.post('/insert_part_category', function (req, res) {
     if(req.body.part_name!="")
     {
         conn.collection('part_category').insert({part_name:req.body.part_name})
-        fs.writeFile(__dirname+"/views/"+req.body.part_name+".ejs", htmlBuilder("ejs_for_add_part_category"), function(err) {
+        fs.writeFile(__dirname+"/views/"+req.body.part_name+".ejs", htmlBuilder.buildHtml("ejs_for_add_part_category"), function(err) {
             if(err) {
                 return console.log(err);
             }

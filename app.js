@@ -48,7 +48,7 @@ app.post('/insert_part_category', function (req, res) {
             conn.collection(req.body.part_category).insert({part_category: req.body.part_category, part_name: "s"});
             console.log("The file was saved!");
         });
-        res.redirect("/part_category");
+        res.redirect("/select_part_category");
     }
     else {
         res.end("잘못된 입력");

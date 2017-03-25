@@ -5,7 +5,7 @@ var engine = require('ejs-locals');
 var mongoose = require('mongoose');
 var fs = require('fs');
 var bodyParser = require('body-parser');
-var htmlBuilder = require('modules/html-builder-module');
+var htmlBuilder = require('modules/html-builder');
 
 mongoose.Promise = global.Promise;
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');

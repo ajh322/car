@@ -56,8 +56,9 @@ app.post('/insert_part_category', function (req, res) {
     }
 })
 app.get('/part_category', function (req, res) {
-    part_category.find({}).exec(function (err, doc_l) {
-        res.render('add_part_category', {data: doc_l, length: doc_l.length});
+    part_category.find({}).exec(function (err, doc) {
+        console.log(doc)
+        res.render('add_part_category', {data: doc, length: doc.length});
     });
 });
 app.get('/get_part_category', function (req, res) {

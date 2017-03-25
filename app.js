@@ -82,7 +82,7 @@ app.get('/select_part_category', function (req, res) {
 //파트 카테고리 선택하고나서 보내주기
 app.post('/go_part_category', function (req, res) {
     part.find({part_category:req.body.part_category}).exec(function (err, doc) {
-        console.log(req.body.part_category);
+        console.log("파트 카테고리"+req.body.part_category);
         res.render(req.body.part_category, {data: doc, length: doc.length, part_category:req.body.part_category});
     })
 });

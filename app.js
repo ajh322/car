@@ -83,7 +83,7 @@ app.get('/select_part_category', function (req, res) {
 app.get('/go_part_category', function (req, res) {
     part.find({part_category:req.body.part_category}).exec(function (err, doc) {
         console.log("파트 카테고리"+req.query.part_category);
-        res.render(req.query.part_category, {data: doc, length: doc.length, part_category:req.body.part_category});
+        res.render(req.query.part_category, {data: doc, length: doc.length, part_category:req.query.part_category});
     })
 });
 //파트 추가하기

@@ -14,7 +14,7 @@ var part_category = require('./models/part_category');
 app.set('port', process.env.PORT || 8080);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ 
+app.use(bodyParser.urlencoded({
     extended: true
 }));
 //자동 업데이트 기능
@@ -57,6 +57,7 @@ app.post('/insert_part_category', function (req, res) {
 })
 app.get('/part_category', function (req, res) {
     var doc_l = get_part_category();
+    console.log(doc_l);
         res.render('add_part_category', {data: doc_l, length: doc_l.length});
 });
 app.get('/get_part_category', function (req, res) {

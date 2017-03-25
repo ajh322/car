@@ -45,17 +45,7 @@ app.post('/insert_part_category', function (req, res) {
             if (err) {
                 return console.log(err);
             }
-            var Schema = new mongoose.Schema({
-                part_category: {type: String},
-                part_name: {type: String, required: true, index: true, sparse: true, unique: true},
-            });
-            var part = conn.model(req.body.part_category, Schema, req.body.part_category);
-            part.part_category = req.body.part_category;
-            part.part_name = "asd";
-            part.save(function (err) {
-                if (err) console.log("Something went wrong while saving the thing");
-                else console.log("Thing was successfully saved");
-            });
+            conn.collection(req.body.part_category).insert({part_category: req.body.part_category, part_name: "s"});
             console.log("The file was saved!");
         });
         res.redirect("/part_category");

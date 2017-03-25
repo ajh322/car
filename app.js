@@ -56,31 +56,41 @@ app.post('/insert_part_category', function (req, res) {
         res.end("잘못된 입력");
     }
 })
+
+//파트 카테고리 추가
 app.get('/add_part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc) {
         console.log(doc)
         res.render('add_part_category', {data: doc, length: doc.length});
     });
 });
+
+//파트 카테고리 json으로 받기
 app.get('/get_part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc) {
         res.end(JSON.stringify(doc));
     })
 });
+
+//파트 카테고리 페이지 선택하는곳
 app.get('/select_part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc) {
         res.render('select_part_category', {data: doc, length: doc.length});
     })
 });
+
+//파트 카테고리 선택하고나서 보내주기
+app.post('/go_part_category', function (req, res) {
+    part.find({part_category:req.body.part_category}).exec(function (err, doc) {
+        res.render(req.body.part_category, {data: doc, length: doc.length});
+    })
+});
+//파트 추가하기
 app.get('/add_part', function (req, res) {
     part_category.find({}).exec(function (err, doc) {
         res.render('select_part_category', {data: doc, length: doc.length});
     })
 });
-
-app.get('/kakao_login', function (req, res) {
-    res.sendFile(__dirname + "/kakao_login.html");
-})
 
 app.listen(app.get('port'));
 

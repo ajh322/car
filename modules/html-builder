@@ -1,0 +1,34 @@
+function buildHtml(str) {
+    switch (str)
+    {
+        case "ejs_for_add_part_category":
+            var header = '';
+            var body = '';
+
+            // concatenate header string
+            // concatenate body string
+
+            return '<!DOCTYPE html>'
+                + '<html><head>'
+                + '<meta charset="UTF-8">'
+                + '</head><body>' +
+                'hi'
+                + '<form method="post" action="/insert_part_category">'
+                + '<input name="part_name" type="text">'
+                + '<input type="submit">' +
+                '</form>' +
+                '<%for(var i=0;i<length;i++){%><%= data[i]%><%}%>'
+                + '</body></html>';
+            break;
+        default:
+            var header = '';
+            var body = '';
+
+            // concatenate header string
+            // concatenate body string
+
+            return '<!DOCTYPE html>'
+                + '<html><header>' + header + '</header><body>' + body + '</body></html>';
+            break;
+    }
+};

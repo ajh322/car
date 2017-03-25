@@ -5,7 +5,7 @@ var engine = require('ejs-locals');
 var mongoose = require('mongoose');
 var fs = require('fs');
 var bodyParser = require('body-parser');
-
+var htmlBuilder = require('modules/html-builder-module');
 
 mongoose.Promise = global.Promise;
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
@@ -42,6 +42,12 @@ app.post('/insert_part_category', function (req, res) {
     if(req.body.part_name!="")
     {
         conn.collection('part_category').insert({part_name:req.body.part_name})
+        fs.writeFile(__dirname+"/views/"+req.body.part_name+".ejs", htmlBuilder("ejs_for_add_part_category"), function(err) {
+            if(err) {
+                return console.log(err);
+            }
+            console.log("The file was saved!");
+        });
         res.redirect("/part_category");
     }
     else
@@ -50,11 +56,8 @@ app.post('/insert_part_category', function (req, res) {
     }
 })
 app.get('/part_category', function (req, res) {
-    part_category.find({}).exec(function (err, doc_l) {
-        console.log(doc_l);
+    var doc_l = get_part_category();
         res.render('add_part_category', {data: doc_l, length: doc_l.length});
-        //res.end(JSON.stringify(doc_l));
-    })
 });
 app.get('/get_part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc) {
@@ -73,5 +76,9 @@ app.get('/kakao_login', function (req, res) {
 
 app.listen(app.get('port'));
 
-
+function get_part_category() {
+    part_category.find({}).exec(function (err, doc_l) {
+        return doc_l;
+    });
+};
 

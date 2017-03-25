@@ -41,14 +41,7 @@ app.get('/', function (req, res) {
 app.post('/insert_part_category', function (req, res) {
     console.log("inserted");
     if (req.body.part_category != "") {
-        conn.collection('part_category').insert({part_category: req.body.part_category})
-        conn.collection("part").insert({part_category: req.body.part_category, part_name: "s"});
-        fs.writeFile(__dirname + "/views/" + req.body.part_category + ".ejs", htmlBuilder.buildHtml("ejs_for_add_part_category"), function (err) {
-            if (err) {
-                return console.log(err);
-            }
-            console.log("The file was saved!");
-        });
+        
         res.redirect("/select_part_category");
     }
     else {

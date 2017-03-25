@@ -87,7 +87,7 @@ app.post('/go_part_category', function (req, res) {
     })
 });
 //파트 추가하기
-app.get('/add_part', function (req, res) {
+app.post('/add_part', function (req, res) {
     conn.collection('part').insert({part_name:req.body.part_name, part_category: req.body.part_category});
     res.redirect(req.get('referer'));
 });

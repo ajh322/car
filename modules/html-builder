@@ -32,3 +32,4 @@ function buildHtml(str) {
             break;
     }
 };
+module.exports.buildHtml = buildHtml;

@@ -48,10 +48,14 @@ app.post('/insert_part_category', function (req, res) {
             var part = require('./models/part')(req.body.part_category);
             part.part_category = req.body.part_category;
             part.part_name = "asd";
-            part.save(function (err) {
+            part.find({}).exec(function (err, doc) {
+                console.log(doc)
+                res.end();
+            });
+            /*part.save(function (err) {
                 if (err) console.log("Something went wrong while saving the thing");
                 else console.log("Thing was successfully saved");
-            });
+            });*/
             console.log("The file was saved!");
         });
         res.redirect("/part_category");

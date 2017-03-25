@@ -8,7 +8,7 @@
 <%
 for(var i = 0;i < length;i++){
 %>
-<form method="post" action="/go_part_category">
+<form method="get" action="/go_part_category">
     <input type="hidden" name="part_category" value="<%= data[i].part_category %>">
     <button type="submit"><%= data[i].part_category %></button>
     <br><br>

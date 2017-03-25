@@ -19,10 +19,10 @@ app.use(bodyParser.urlencoded({
 //자동 업데이트 기능
 app.post('/deploy/', function (req, res) {
     var spawn = require('child_process').spawn,
-        deploy = spawn('sh', [ './deploy.sh' ]);
+        deploy = spawn('sh', ['./deploy.sh']);
 
     deploy.stdout.on('data', function (data) {
-        console.log(''+data);
+        console.log('' + data);
     });
 
     deploy.on('close', function (code) {
@@ -36,24 +36,30 @@ app.get('/', function (req, res) {
     conn.collection('car').insert({name: 2, user_id: "s"});
     res.end();
 });
+//파트 카테고리 추가
 app.post('/insert_part_category', function (req, res) {
     console.log("inserted");
-    if(req.body.part_name!="")
-    {
-        conn.collection('part_category').insert({part_name:req.body.part_name})
-        fs.writeFile(__dirname+"/views/"+req.body.part_name+".ejs", htmlBuilder.buildHtml("ejs_for_add_part_category"), function(err) {
-            if(err) {
+    if (req.body.part_category != "") {
+        conn.collection('part_category').insert({part_category: req.body.part_category})
+        fs.writeFile(__dirname + "/views/" + req.body.part_category + ".ejs", htmlBuilder.buildHtml("ejs_for_add_part_category"), function (err) {
+            if (err) {
                 return console.log(err);
             }
+            var part = require('./models/part')(req.body.part_category);
+            part.part_category = req.body.part_category;
+            part.part_name = "asd";
+            part.save(function (err) {
+                if (err) console.log("Something went wrong while saving the thing");
+                else console.log("Thing was successfully saved");
+            });
             console.log("The file was saved!");
         });
         res.redirect("/part_category");
     }
-    else
-    {
+    else {
         res.end("잘못된 입력");
     }
-}) 
+})
 app.get('/add_part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc) {
         console.log(doc)
@@ -70,9 +76,14 @@ app.get('/select_part_category', function (req, res) {
         res.render('select_part_category', {data: doc, length: doc.length});
     })
 });
+app.get('/add_part', function (req, res) {
+    part_category.find({}).exec(function (err, doc) {
+        res.render('select_part_category', {data: doc, length: doc.length});
+    })
+});
 
 app.get('/kakao_login', function (req, res) {
-    res.sendFile(__dirname+"/kakao_login.html");
+    res.sendFile(__dirname + "/kakao_login.html");
 })
 
 app.listen(app.get('port'));

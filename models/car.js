@@ -4,7 +4,6 @@
 var mongoose = require('mongoose');
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
 var userSchema = new mongoose.Schema({
-
     strTitle: {type: String, default: ""},
     strCar: {type: String, default: ""},
     strCompany: {type: String, default: ""},

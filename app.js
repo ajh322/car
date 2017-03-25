@@ -3,6 +3,7 @@ var path = require("path");
 var app = express();
 var engine = require('ejs-locals');
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var htmlBuilder = require('./modules/html-builder');

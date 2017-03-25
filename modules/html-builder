@@ -14,8 +14,7 @@ function buildHtml(str) {
                 + '</head><body>' +
                 'hi'
                 + '<form method="post" action="/add_part">'
-                + '<input name="part_name" type="text">' +
-                '<input type="hidden" name="part_category" value="<%= data[i].part_category %>"'
+                + '<input name="part_name" type="text">' 
                 + '<input type="submit">' +
                 '</form>' +
                 '<%for(var i=0;i<length;i++){%><%= data[i]%><%}%>'

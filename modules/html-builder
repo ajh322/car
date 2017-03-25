@@ -12,10 +12,10 @@ function buildHtml(str) {
                 + '<html><head>'
                 + '<meta charset="UTF-8">'
                 + '</head><body>' +
-                'hi'
+                'hello'
                 + '<form method="post" action="/add_part">'
                 + '<input name="part_name" type="text">'
-                + '<button type="submit">' 
+                + '<button type="submit">'
                 + '<input type="hidden" name="part_category" value="<%= part_category%>"'+
                 '</form>' +
                 '<%for(var i=0;i<length;i++){%><%= data[i]%><%}%>'

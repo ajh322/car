@@ -10,6 +10,7 @@ mongoose.Promise = global.Promise;
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
 var Car = require('./models/car');
 var part_category = require('./models/part_category');
+var part = require('./models/part');
 app.set('port', process.env.PORT || 8080);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
@@ -45,7 +46,7 @@ app.post('/insert_part_category', function (req, res) {
             if (err) {
                 return console.log(err);
             }
-            conn.collection(req.body.part_category).insert({part_category: req.body.part_category, part_name: "s"});
+            conn.collection("part").insert({part_category: req.body.part_category, part_name: "s"});
             console.log("The file was saved!");
         });
         res.redirect("/select_part_category");

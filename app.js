@@ -42,7 +42,7 @@ app.get('/', function (req, res) {
 app.post('/insert_part_category', function (req, res) {
     console.log("inserted");
     if (req.body.part_category != "") {
-        conn.collection('part_category').insert({part_category: req.body.part_category})
+        conn.collection('part_category').insert({part_category: req.body.part_category});
         conn.collection('part').insert({part_category: req.body.part_category, part_name: "test"})
         fs.writeFile(__dirname + "/views/" + req.body.part_category + ".ejs", htmlBuilder.buildHtml("ejs_for_add_part_category"), function (err) {
             if (err) {
@@ -87,9 +87,8 @@ app.post('/go_part_category', function (req, res) {
 });
 //파트 추가하기
 app.get('/add_part', function (req, res) {
-    part_category.find({}).exec(function (err, doc) {
-        res.render('select_part_category', {data: doc, length: doc.length});
-    })
+    conn.collection('part').insert({part_name:req.body.part_name, part_category: req.body.part_category});
+    res.redirect(req.get('referer'));
 });
 
 app.listen(app.get('port'));

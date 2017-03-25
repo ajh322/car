@@ -13,8 +13,9 @@ function buildHtml(str) {
                 + '<meta charset="UTF-8">'
                 + '</head><body>' +
                 'hi'
-                + '<form method="post" action="/insert_part_category">'
-                + '<input name="part_name" type="text">'
+                + '<form method="post" action="/add_part">'
+                + '<input name="part_name" type="text">' +
+                '<input type="hidden" name="part_category" value="<%= data[i].part_category %>"'
                 + '<input type="submit">' +
                 '</form>' +
                 '<%for(var i=0;i<length;i++){%><%= data[i]%><%}%>'

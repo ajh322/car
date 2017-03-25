@@ -54,7 +54,7 @@ app.post('/insert_part_category', function (req, res) {
         res.end("잘못된 입력");
     }
 })
-app.get('/part_category', function (req, res) {
+app.get('/add_part_category', function (req, res) {
     part_category.find({}).exec(function (err, doc) {
         console.log(doc)
         res.render('add_part_category', {data: doc, length: doc.length});

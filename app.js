@@ -45,7 +45,7 @@ app.post('/insert_part_category', function (req, res) {
             if (err) {
                 return console.log(err);
             }
-            var Schema = new Schema({
+            var Schema = new mongoose.Schema({
                 part_category: {type: String},
                 part_name: {type: String, required: true, index: true, sparse: true, unique: true},
             });

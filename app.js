@@ -49,7 +49,7 @@ app.post('/insert_part_category', function (req, res) {
                 part_category: {type: String},
                 part_name: {type: String, required: true, index: true, sparse: true, unique: true},
             });
-            var part = mongoose.model(req.body.part_category, Schema);
+            var part = conn.model(req.body.part_category, Schema, req.body.part_category);
             part.part_category = req.body.part_category;
             part.part_name = "asd";
             part.save(function (err) {

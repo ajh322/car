@@ -83,7 +83,7 @@ app.get('/select_part_category', function (req, res) {
 app.post('/go_part_category', function (req, res) {
     part.find({part_category:req.body.part_category}).exec(function (err, doc) {
         console.log(req.body.part_category);
-        res.render(req.body.part_category, {data: doc, length: doc.length});
+        res.render(req.body.part_category, {data: JSON.stringify(doc), length: doc.length});
     })
 });
 //파트 추가하기

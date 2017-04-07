@@ -14,7 +14,10 @@ function buildHtml(str) {
                 + '</head><body>' +
                 'hello'
                 + '<form method="post" action="/add_part">'
-                + '<input name="part_name" type="text">'
+                + '<input name="part_name" type="text">' +
+                '<br>' +
+                '이미지 업로드 <input type="file" name="img"/><br>' +
+                '파일 업로드 <input type="file" name="file"/><br>'
                 + '<button type="submit">' +"submit"+
                 '</button>'
                 + '<input type="hidden" name="part_category" value=<%= part_category%>>'+

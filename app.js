@@ -12,6 +12,16 @@ var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
 var Car = require('./models/car');
 var part_category = require('./models/part_category');
 var part = require('./models/part');
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' });
+app.use(express.static(__dirname + '/public'));
+var storage_main = multer.diskStorage({
+    destination: './public/img',
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+});
+var upload_main = multer({storage: storage_main});
 app.set('port', process.env.PORT || 8080);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
@@ -87,14 +97,14 @@ app.get('/go_part_category', function (req, res) {
     })
 });
 //파트 추가하기
-app.post('/add_part', function (req, res) {
+app.post('/add_part', upload_main.any(), function (req, res) {
+    console.log(req.files);
     conn.collection('part').insert({part_category: req.body.part_category, part_name:req.body.part_name});
     part.find({part_category:req.body.part_category}).exec(function (err, doc) {
         console.log("파트 카테고리"+req.body.part_category);
         res.render(req.body.part_category, {data: doc, length: doc.length, part_category:req.body.part_category});
     })
 });
-
 app.listen(app.get('port'));
 
 function get_part_category() {

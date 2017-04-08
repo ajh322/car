@@ -97,14 +97,15 @@ app.get('/go_part_category', function (req, res) {
     })
 });
 //파트 추가하기
-app.post('/add_part', upload_main.any(), function (req, res) {
+var add_part_upload = upload.fields([{ name: 'img', maxCount: 1 }, { name: 'file', maxCount: 1 }]);
+app.post('/add_part', add_part_upload, function (req, res) {
     console.log("1"+req.files['img']);
     console.log("2"+req.files['img'][0]);
     console.log("3"+req.files['file']);
     console.log("4"+req.files['file'][0]);
     conn.collection('part').insert({part_category: req.body.part_category, part_name:req.body.part_name});
     part.find({part_category:req.body.part_category}).exec(function (err, doc) {
-        console.log("파트 카테고리"+req.body.part_category); 
+        console.log("파트 카테고리"+req.body.part_category);
         res.render(req.body.part_category, {data: doc, length: doc.length, part_category:req.body.part_category});
     })
 });

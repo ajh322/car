@@ -12,8 +12,8 @@ var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
 var Car = require('./models/car');
 var part_category = require('./models/part_category');
 var part = require('./models/part');
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' });
+var multer = require('multer')
+var upload = multer({dest: 'uploads/'});
 app.use(express.static(__dirname + '/public'));
 var storage_main = multer.diskStorage({
     destination: './public/img',
@@ -91,20 +91,20 @@ app.get('/select_part_category', function (req, res) {
 
 //파트 카테고리 선택하고나서 보내주기
 app.get('/go_part_category', function (req, res) {
-    part.find({part_category:req.query.part_category}).exec(function (err, doc) {
-        console.log("파트 카테고리"+req.query.part_category);
-        res.render(req.query.part_category, {data: doc, length: doc.length, part_category:req.query.part_category});
+    part.find({part_category: req.query.part_category}).exec(function (err, doc) {
+        console.log("파트 카테고리" + req.query.part_category);
+        res.render(req.query.part_category, {data: doc, length: doc.length, part_category: req.query.part_category});
     })
 });
 //파트 추가하기
-var add_part_upload = upload_main.fields([{ name: 'img', maxCount: 1 }, { name: 'file', maxCount: 1 }]);
-app.post('/add_part', add_part_upload, function (req, res) {
-    console.log("2"+req.files['img'][0]);
-    console.log("4"+req.files['file'][0]);
-    conn.collection('part').insert({part_category: req.body.part_category, part_name:req.body.part_name});
-    part.find({part_category:req.body.part_category}).exec(function (err, doc) {
-        console.log("파트 카테고리"+req.body.part_category);
-        res.render(req.body.part_category, {data: doc, length: doc.length, part_category:req.body.part_category});
+var add_part_upload = upload_main.fields([{name: 'img', maxCount: 1}, {name: 'file', maxCount: 1}]);
+app.post('/add_part', upload_main.fields([{name: 'img', maxCount: 1}, {name: 'file',maxCount: 1}]), function (req, res) {
+    console.log("2" + req.files['img'][0]);
+    console.log("4" + req.files['img']);
+    conn.collection('part').insert({part_category: req.body.part_category, part_name: req.body.part_name});
+    part.find({part_category: req.body.part_category}).exec(function (err, doc) {
+        console.log("파트 카테고리" + req.body.part_category);
+        res.render(req.body.part_category, {data: doc, length: doc.length, part_category: req.body.part_category});
     })
 });
 app.listen(app.get('port'));

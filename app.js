@@ -13,7 +13,6 @@ var Car = require('./models/car');
 var part_category = require('./models/part_category');
 var part = require('./models/part');
 var multer = require('multer')
-var upload = multer({dest: 'uploads/'});
 app.use(express.static(__dirname + '/public'));
 var storage_main = multer.diskStorage({
     destination: './public/img',

@@ -98,7 +98,7 @@ app.get('/go_part_category', function (req, res) {
 //파트 추가하기
 var add_part_upload = upload_main.fields([{name: 'img', maxCount: 1}, {name: 'file', maxCount: 1}]);
 app.post('/add_part', upload_main.single('img'), function (req, res, next) {
-    console.log("2" + req.file);
+    console.log("2" + req.file); 
     //console.log("4" + req.files['img']);
     conn.collection('part').insert({part_category: req.body.part_category, part_name: req.body.part_name});
     part.find({part_category: req.body.part_category}).exec(function (err, doc) {

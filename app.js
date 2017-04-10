@@ -15,7 +15,9 @@ var part = require('./models/part');
 var multer = require('multer')
 app.use(express.static(__dirname + '/public'));
 var storage_main = multer.diskStorage({
-    destination: './public/img',
+    destination: function (req, file, cb) {
+        cb(null, '/public/' + req.part_category)
+    },
     filename: function (req, file, cb) {
         cb(null, Date.now() + path.extname(file.originalname))
     }

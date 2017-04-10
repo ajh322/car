@@ -16,6 +16,7 @@ var multer = require('multer')
 app.use(express.static(__dirname + '/public'));
 var storage_main = multer.diskStorage({
     destination: function (req, file, cb) {
+        console.log("바디:"+req.body);
         cb(null, '/public/' + req.body.part_category)
     },
     filename: function (req, file, cb) {

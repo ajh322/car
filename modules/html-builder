@@ -21,7 +21,7 @@ function buildHtml(str) {
                 '파일 업로드 <input type="file" name="file"/><br>'
                 + '<button type="submit">' +"submit"+
                 '</button>'
-                + '<input type="text" name="part_category" value=<%= part_category%>>'+
+                + '<input name="part_category" type="text" value=<%= part_category%>>'+
                 '</form>' +
                 '<%for(var i=0;i<length;i++){%><%= data[i]%><br><%}%>' +
                 + '</body></html>';

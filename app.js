@@ -16,7 +16,7 @@ var multer = require('multer')
 app.use(express.static(__dirname + '/public'));
 var storage_main = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '/public/' + req.part_category)
+        cb(null, '/public/' + req.body.part_category)
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + path.extname(file.originalname))
@@ -100,7 +100,7 @@ app.get('/go_part_category', function (req, res) {
 //파트 추가하기
 var add_part_upload = upload_main.fields([{name: 'img', maxCount: 1}, {name: 'file', maxCount: 1}]);
 app.post('/add_part', add_part_upload, function (req, res, next) {
-    //console.log("2" + req.file);
+    console.log("2" + req.body);
     console.log("1" + req.files['img']);
     conn.collection('part').insert({part_category: req.body.part_category, part_name: req.body.part_name});
     part.find({part_category: req.body.part_category}).exec(function (err, doc) {

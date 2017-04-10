@@ -15,7 +15,7 @@ function buildHtml(str) {
                 'hello'
                 + '<form method="post" action="/add_part" enctype="multipart/form-data">'
                 + '<input name="part_name" type="text">' +
-                + '<input name="part_named" type="text">' +
+                 '<input name="part_named" type="text">' +
                 '<br>' +
                 '이미지 업로드 <input type="file" name="img"/><br>' +
                 '파일 업로드 <input type="file" name="file"/><br>'

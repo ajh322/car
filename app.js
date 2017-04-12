@@ -13,11 +13,16 @@ var Car = require('./models/car');
 var part_category = require('./models/part_category');
 var part = require('./models/part');
 var multer = require('multer')
+var mkdirp = require('mkdirp');
 app.use(express.static(__dirname + '/public'));
 var storage_main = multer.diskStorage({
     destination: function (req, file, cb) {
         console.log("바디:");
         console.log(req.body);
+        mkdirp('./public/' + req.body.part_category, function(err) {
+            console.log(err);
+            // path exists unless there was an error
+        });
         cb(null, './public/' + req.body.part_category)
     },
     filename: function (req, file, cb) {

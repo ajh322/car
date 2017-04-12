@@ -110,6 +110,7 @@ app.post('/add_part', add_part_upload, function (req, res, next) {
     conn.collection('part').insert({part_category: req.body.part_category, part_name: req.body.part_name});
     part.find({part_category: req.body.part_category}).exec(function (err, doc) {
         console.log("파트 카테고리" + req.body.part_category);
+        console.log("결과" + doc);
         res.render(req.body.part_category, {data: doc, length: doc.length, part_category: req.body.part_category});
     })
 });

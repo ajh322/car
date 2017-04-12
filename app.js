@@ -109,7 +109,7 @@ var add_part_upload = upload_main.fields([{name: 'img', maxCount: 1}, {name: 'fi
 app.post('/add_part', add_part_upload, function (req, res, next) {
     conn.collection('part').insert({part_category: req.body.part_category, part_name: req.body.part_name,img_url:"",file_url:""});
     part.find({part_category: req.body.part_category}).exec(function (err, doc) {
-        console.log(req.files['img'].path.split('public')[1]);
+        console.log(req.files['img'].path);
         console.log(req.files);
         res.render(req.body.part_category, {data: doc, length: doc.length, part_category: req.body.part_category});
     })

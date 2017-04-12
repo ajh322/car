@@ -106,6 +106,7 @@ app.get('/go_part_category', function (req, res) {
 });
 app.post('/get_part_category', function (req, res) {
     part.find({}).exec(function (err, doc) {
+        console.log(doc);
         res.render(doc);
     })
 });

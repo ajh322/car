@@ -62,7 +62,6 @@ app.post('/insert_part_category', function (req, res) {
     console.log("inserted");
     if (req.body.part_category != "") {
         conn.collection('part_category').insert({part_category: req.body.part_category});
-        conn.collection('part').insert({part_category: req.body.part_category, part_name: "test"})
         fs.writeFile(__dirname + "/views/" + req.body.part_category + ".ejs", htmlBuilder.buildHtml("ejs_for_add_part_category"), function (err) {
             if (err) {
                 return console.log(err);
@@ -103,6 +102,11 @@ app.get('/go_part_category', function (req, res) {
     part.find({part_category: req.query.part_category}).exec(function (err, doc) {
         console.log("파트 카테고리" + req.query.part_category);
         res.render(req.query.part_category, {data: doc, length: doc.length, part_category: req.query.part_category});
+    })
+});
+app.post('/get_part_category', function (req, res) {
+    part.find({}).exec(function (err, doc) {
+        res.render(doc);
     })
 });
 //파트 추가하기

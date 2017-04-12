@@ -8,6 +8,7 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var htmlBuilder = require('./modules/html-builder');
 mongoose.Promise = global.Promise;
+var server_url="35.161.80.18:8080/";
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
 var Car = require('./models/car');
 var part_category = require('./models/part_category');
@@ -107,9 +108,9 @@ app.get('/go_part_category', function (req, res) {
 //파트 추가하기
 var add_part_upload = upload_main.fields([{name: 'img', maxCount: 1}, {name: 'file', maxCount: 1}]);
 app.post('/add_part', add_part_upload, function (req, res, next) {
-    conn.collection('part').insert({part_category: req.body.part_category, part_name: req.body.part_name,img_url:"",file_url:""});
+    conn.collection('part').insert({part_category: req.body.part_category, part_name: req.body.part_name,img_url:server_url+req.files.img[0].path.split('public')[1],file_url:server_url+req.files.file[0].path.split('public')[1]});
     part.find({part_category: req.body.part_category}).exec(function (err, doc) {
-        console.log(req.files.img[0].path.split('public')[1]);
+        console.log(server_url+req.files.img[0].path.split('public')[1]);
         console.log(req.files);
         res.render(req.body.part_category, {data: doc, length: doc.length, part_category: req.body.part_category});
     })

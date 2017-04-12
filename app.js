@@ -107,9 +107,9 @@ app.get('/go_part_category', function (req, res) {
 //파트 추가하기
 var add_part_upload = upload_main.fields([{name: 'img', maxCount: 1}, {name: 'file', maxCount: 1}]);
 app.post('/add_part', add_part_upload, function (req, res, next) {
-    conn.collection('part').insert({part_category: req.body.part_category, part_name: req.body.part_name});
+    conn.collection('part').insert({part_category: req.body.part_category, part_name: req.body.part_name,img_url:"",file_url:""});
     part.find({part_category: req.body.part_category}).exec(function (err, doc) {
-        console.log("파트 카테고리" + req.body.part_category);
+        console.log("파일" + req.files);
         res.render(req.body.part_category, {data: doc, length: doc.length, part_category: req.body.part_category});
     })
 });

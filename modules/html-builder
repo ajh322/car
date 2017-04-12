@@ -18,10 +18,9 @@ function buildHtml(str) {
                 '<br>' +
                 '이미지 업로드 <input type="file" name="img"/><br>' +
                 '파일 업로드 <input type="file" name="file"/><br>'
-                +
-                '</button>'
                 + '<input name="part_category" type="text" value=<%= part_category%>>'+
-                '<button type="submit">' +"submit"+
+                + '<button type="submit">' +"submit"+
+                '</button>'
                 '</form>' +
                 '<%for(var i=0;i<length;i++){%><%= data[i]%><br><%}%>' +
                 + '</body></html>';

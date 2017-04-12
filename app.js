@@ -107,7 +107,7 @@ app.get('/go_part_category', function (req, res) {
 app.get('/get_part', function (req, res) {
     part.find({}).exec(function (err, doc) {
         console.log(doc);
-        res.render(doc);
+        //res.render(doc);
     })
 });
 //파트 추가하기

@@ -18,7 +18,7 @@ var storage_main = multer.diskStorage({
     destination: function (req, file, cb) {
         console.log("바디:");
         console.log(req.body);
-        cb(null, '/public/' + req.body.part_category)
+        cb(null, './public/' + req.body.part_category)
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + path.extname(file.originalname))

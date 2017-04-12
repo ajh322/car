@@ -15,10 +15,11 @@ function buildHtml(str) {
                 'hello'
                 + '<form method="post" action="/add_part" enctype="multipart/form-data">'
                 + '<input name="part_name" type="text">' +
-                '<br>' +
-                '이미지 업로드 <input type="file" name="img"/><br>' +
+                '<br>'
+                + '<input name="part_category" type="text" value=<%= part_category%>>'
+                + '이미지 업로드 <input type="file" name="img"/><br>' +
                 '파일 업로드 <input type="file" name="file"/><br>'
-                + '<input name="part_category" type="text" value="sad">'
+
                 + '<button type="submit">' +"submit"+
                 '</button>'
                 '</form>' +

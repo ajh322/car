@@ -2,6 +2,8 @@
  * Created by AJH on 2017-04-23.
  */
 var mongoose = require('mongoose');
+var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
+var autoIncrement = require('mongoose-auto-increment');
 var userSchema = new mongoose.Schema({
     Title: {type: String, required: true},
     Car: {type: String, required: true},
@@ -12,5 +14,7 @@ var userSchema = new mongoose.Schema({
     Contents: {type: String, required: true},
     Carimage: {type: String, required: true},
     seq:{type: Number, default: 0 }
-});
-module.exports = userSchema;
+},{versionKey: false});
+userSchema.plugin(autoIncrement.plugin, { model: 'const_case', field: 'seq' });
+var const_case = conn.model('const_case', userSchema, "const_case");
+module.exports = const_case;

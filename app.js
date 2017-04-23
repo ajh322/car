@@ -3,7 +3,6 @@ var path = require("path");
 var app = express();
 var engine = require('ejs-locals');
 var mongoose = require('mongoose');
-var autoIncrement = require('mongoose-auto-increment');
 mongoose.Promise = global.Promise;
 var fs = require('fs');
 var bodyParser = require('body-parser');
@@ -11,27 +10,12 @@ var htmlBuilder = require('./modules/html-builder');
 mongoose.Promise = global.Promise;
 var server_url = "35.161.80.18:8080";
 var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
+var autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(conn);
 var Car = require('./models/car');
 var part_category = require('./models/part_category');
 var part = require('./models/part');
-
-var adminSchema = new mongoose.Schema({
-    email:{type:String,unique:true,required:true},
-    passwordHash:{type:String},
-    isActivated:{type:Boolean},
-    admin_id:{type:Number,  default: 0, unique:true}
-});
-
-adminSchema.plugin(autoIncrement.plugin(),{model:'adminSchema',
-    field:'admin_id',
-    startAt:1,
-    incrementBy:1});
-
-/*
-var const_case_schema = require('./models/construction_case');
-const_case_schema.plugin(autoIncrement.plugin, 'const_case');
-var const_case = conn.model('const_case', const_case_schema);
-*/
+var const_case = require('./models/construction_case');
 
 var multer = require('multer')
 var mkdirp = require('mkdirp');
@@ -78,21 +62,58 @@ app.get('/', function (req, res) {
     res.end();
 });
 
-app.post('/add_const_case', function (req, res) {
-    console.log("const_case inserted");
-    const_case.insert({
-        "Title": "아우디A6 블루투스 힘박스와 억스 활성화",
-        "Car": "아우디 A6",
-        "Region": "서울특별시 금천구",
-        "Company": "유베카",
-        "Price": "360000",
-        "Time": "3",
-        "Contents": "아우디 전용 AUX 모듈과 블루투스 모듈 힘박스를 활성화합니다.",
-        "Carimage": "유베카1a.jpg,유베카1b.jpg,유베카1c.jpg,유베카1d.jpg"
-    })
+app.get('/add_const_case_100', function (req, res) {
+    for (var i = 0; i < 100; i++) {
+        var fluffy = new const_case({
+            "Title": "아우디A6 블루투스 힘박스와 억스 활성화",
+            "Car": "아우디 A6",
+            "Region": "서울특별시 금천구",
+            "Company": "유베카",
+            "Price": "360000",
+            "Time": "3",
+            "Contents": "아우디 전용 AUX 모듈과 블루투스 모듈 힘박스를 활성화합니다.",
+            "Carimage": "유베카1a.jpg,유베카1b.jpg,유베카1c.jpg,유베카1d.jpg"
+        });
+        fluffy.save(function (err, res) {
+            console.log(res);
+        })
+    }
     const_case.find({}).exec(function (err, doc) {
         res.end(JSON.stringify(doc));
     })
+})
+app.get('/get_const_case', function (req, res) {
+    const_case.find({}).exec(function (err, doc) {
+        res.end(JSON.stringify(doc));
+    })
+})
+app.post('/get_const_case', function (req, res) {
+    //start, end
+    var docs = "[";
+    var start = req.body.start;
+    var end = req.body.end;
+    console.log(start);
+    const_case.find({}).exec(function (err, doc) {
+        if (start < 0)
+            start = 0;
+        if (end <= start)
+            end = start;
+        for (; start < end; start++) {
+            try {
+                docs += doc[start] + ",";
+                //console.log(docs);
+            } catch (e) {
+            }
+        }
+        docs = docs.substr(0, docs.length - 1);
+        docs += "]"
+        res.end(JSON.stringify(docs));
+    })
+})
+app.get('/const_case_remove', function (req, res) {
+    const_case.remove({}, function (err, doc) {
+        res.end(JSON.stringify(doc));
+    });
 })
 //파트 카테고리 추가
 app.post('/insert_part_category', function (req, res) {

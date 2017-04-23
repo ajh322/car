@@ -15,9 +15,23 @@ var Car = require('./models/car');
 var part_category = require('./models/part_category');
 var part = require('./models/part');
 
+var adminSchema = new mongoose.Schema({
+    email:{type:String,unique:true,required:true},
+    passwordHash:{type:String},
+    isActivated:{type:Boolean},
+    admin_id:{type:Number,  default: 0, unique:true}
+});
+
+adminSchema.plugin(autoIncrement.plugin(),{model:'adminSchema',
+    field:'admin_id',
+    startAt:1,
+    incrementBy:1});
+
+/*
 var const_case_schema = require('./models/construction_case');
 const_case_schema.plugin(autoIncrement.plugin, 'const_case');
 var const_case = conn.model('const_case', const_case_schema);
+*/
 
 var multer = require('multer')
 var mkdirp = require('mkdirp');

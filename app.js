@@ -82,6 +82,25 @@ app.get('/add_const_case_100', function (req, res) {
         res.end(JSON.stringify(doc));
     })
 })
+app.get('/add_const_case_1', function (req, res) {
+        var fluffy = new const_case({
+            "Title": "아우디A6 블루투스 힘박스와 억스 활성화",
+            "Car": "아우디 A6",
+            "Region": "서울특별시 금천구",
+            "Company": "유베카",
+            "Price": "360000",
+            "Time": "3",
+            "Contents": "아우디 전용 AUX 모듈과 블루투스 모듈 힘박스를 활성화합니다.",
+            "Carimage": "유베카1a.jpg,유베카1b.jpg,유베카1c.jpg,유베카1d.jpg"
+        });
+        fluffy.save(function (err, res) {
+            console.log(res);
+        })
+    const_case.find({}).exec(function (err, doc) {
+        res.end(JSON.stringify(doc));
+    })
+})
+
 app.get('/get_const_case', function (req, res) {
     const_case.find({}).exec(function (err, doc) {
         res.end(JSON.stringify(doc));

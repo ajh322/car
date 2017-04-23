@@ -15,7 +15,7 @@ var Car = require('./models/car');
 var part_category = require('./models/part_category');
 var part = require('./models/part');
 
-var const_case_schema = require('./models/constrction_case');
+var const_case_schema = require('./models/construction_case');
 const_case_schema.plugin(autoIncrement.plugin, 'const_case');
 var const_case = conn.model('const_case', const_case_schema);
 

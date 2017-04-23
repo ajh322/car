@@ -76,6 +76,9 @@ app.post('/add_const_case', function (req, res) {
         "Contents": "아우디 전용 AUX 모듈과 블루투스 모듈 힘박스를 활성화합니다.",
         "Carimage": "유베카1a.jpg,유베카1b.jpg,유베카1c.jpg,유베카1d.jpg"
     })
+    const_case.find({}).exec(function (err, doc) {
+        res.end(JSON.stringify(doc));
+    })
 })
 //파트 카테고리 추가
 app.post('/insert_part_category', function (req, res) {

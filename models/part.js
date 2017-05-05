@@ -2,7 +2,7 @@
  * Created by AJH on 2017-03-25.
  */
 var mongoose = require('mongoose');
-var conn = mongoose.createConnection('mongodb://localhost/car');
+var conn = mongoose.createConnection('localhost:27017/car');
 var userSchema = new mongoose.Schema({
     part_name: {type: String},
     part_category: {type: String, default: ""},

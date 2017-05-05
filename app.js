@@ -8,7 +8,7 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var htmlBuilder = require('./modules/html-builder');
 var server_url = "35.160.55.61:8080";
-var conn = mongoose.createConnection('mongodb://localhost/car');
+var conn = mongoose.createConnection('localhost:27017/car');
 var autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(conn);
 var Car = require('./models/car');
@@ -57,7 +57,7 @@ app.post('/deploy/', function (req, res) {
 
 //테스트용
 app.get('/', function (req, res) {
-    conn.collection('car').insert({name: 2, user_id: "s"});
+    console.log("come");
     res.end();
 });
 

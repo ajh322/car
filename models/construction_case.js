@@ -2,7 +2,7 @@
  * Created by AJH on 2017-04-23.
  */
 var mongoose = require('mongoose');
-var conn = mongoose.createConnection('mongodb://35.161.80.18:27017/car');
+var conn = mongoose.createConnection('mongodb://localhost/car');
 var autoIncrement = require('mongoose-auto-increment');
 var userSchema = new mongoose.Schema({
     Title: {type: String, required: true},

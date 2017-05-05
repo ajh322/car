@@ -7,9 +7,8 @@ mongoose.Promise = global.Promise;
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var htmlBuilder = require('./modules/html-builder');
-mongoose.Promise = global.Promise;
 var server_url = "35.160.55.61:8080";
-var conn = mongoose.createConnection('mongodb://35.160.55.61:27017/car');
+var conn = mongoose.createConnection('mongodb://localhost/car');
 var autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(conn);
 var Car = require('./models/car');
@@ -201,7 +200,9 @@ app.post('/add_part', add_part_upload, function (req, res, next) {
         res.render(req.body.part_category, {data: doc, length: doc.length, part_category: req.body.part_category});
     })
 });
-app.listen(app.get('port'));
+app.listen(app.get('port'), function () {
+    console.log("going")
+});
 
 function get_part_category() {
     part_category.find({}).exec(function (err, doc_l) {

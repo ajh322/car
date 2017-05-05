@@ -1,0 +1,49 @@
+POST /iletter/emsWriteProc.do HTTP/1.1
+Accept-Encoding: gzip
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36
+Content-Type: multipart/form-data;  boundary=------WebKitFormBoundaryj7BVnbibjRqWzAF
+Host: www.army.mil.kr
+Connection: Keep-Alive
+Content-Length: 984
+
+------WebKitFormBoundaryj7BVnbibjRqWzAF
+Content-Disposition: form-data; name="recruit_idx"
+
+181420
+------WebKitFormBoundaryj7BVnbibjRqWzAF
+Content-Disposition: form-data; name="name"
+
+김민수
+------WebKitFormBoundaryj7BVnbibjRqWzAF
+Content-Disposition: form-data; name="dateBir"
+
+960322
+------WebKitFormBoundaryj7BVnbibjRqWzAF
+Content-Disposition: form-data; name="platoon_code"
+
+BEVNVSVXSE
+------WebKitFormBoundaryj7BVnbibjRqWzAF
+Content-Disposition: form-data; name="div_code"
+
+5div
+------WebKitFormBoundaryj7BVnbibjRqWzAF
+Content-Disposition: form-data; name="writer"
+
+fq
+------WebKitFormBoundaryj7BVnbibjRqWzAF
+Content-Disposition: form-data; name="pw"
+
+1
+------WebKitFormBoundaryj7BVnbibjRqWzAF
+Content-Disposition: form-data; name="title"
+
+qf
+------WebKitFormBoundaryj7BVnbibjRqWzAF
+Content-Disposition: form-data; name="contents"
+
+qf
+------WebKitFormBoundaryj7BVnbibjRqWzAF
+Content-Disposition: form-data; name="file"; filename=""
+
+
+------WebKitFormBoundaryj7BVnbibjRqWzAF--

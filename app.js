@@ -199,12 +199,13 @@ app.post('/add_part', add_part_upload, function (req, res, next) {
         console.log(req.files);
         res.render(req.body.part_category, {data: doc, length: doc.length, part_category: req.body.part_category});
     })
-});
 app.listen(app.get('port'), function () {
     console.log("going")
-});
-
-function get_part_category() {
+var ip = require("ip");
+var a = ip.address();
+console.log("private ip address", a);
+})
+  function get_part_category() {
     part_category.find({}).exec(function (err, doc_l) {
         return doc_l;
     });
